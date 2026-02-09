@@ -1,7 +1,11 @@
+import RegisterPage from "./pages/RegisterPage";
+
+// TODO: Implement routes with tanstack-router or react-router.
+
 function App() {
   return (
     <>
-      <h1>Hello World, this is Firebase !</h1>
+      <RegisterPage />
     </>
   );
 }
