@@ -1,4 +1,4 @@
-import LogOutUserButton from './component/LogOutUserButton';
+import LogOutUserButton from './components/LogOutUserButton';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
