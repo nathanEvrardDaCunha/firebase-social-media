@@ -1,4 +1,5 @@
 import LogOutUserButton from './component/LogOutUserButton';
+import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 // TODO: Implement routes with tanstack-router or react-router.
@@ -13,6 +14,8 @@ function App() {
             <RegisterPage />
 
             <LogOutUserButton />
+
+            <LoginPage />
         </>
     );
 }
