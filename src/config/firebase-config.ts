@@ -17,6 +17,16 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
+// TODO: to delete after testing purposes done.
+// IDEA: is this good to centralized all/most of firebase behavior into the config file ?
+// onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//         console.log(user);
+//     } else {
+//         console.log('No user anymore.');
+//     }
+// });
+
 // const analytics = getAnalytics(app);
 
 // firebase login
@@ -29,16 +39,8 @@ export const db = getFirestore(app);
 
 # ======== AUTHENTIFICATION ======== #
 
-- Dont forget to use Zod and React Form to handle form easily. => (verify email are email type...)
 - Make the form accessible even for deaf and blind, color-blind, adhd people
-
 => Is it possible to make firebase (the so called backend) verify the user send the right file, and did not temper with the client validation system ?
-
-- 1) Create a form component
-- 2) Import { auth } from this firebase
-- 3) Import { createuserWithEmailAndPassword } from firebase package
-- 4) Create "signIn" async function in the form and add "await createuserWithEmailAndPassword(auth, email, password)" => And add try/catch ?
-- 5) Same as 4, but with "signOut" using the firebase signOut(auth...)
 
 # ======== CRUD ======== #
 

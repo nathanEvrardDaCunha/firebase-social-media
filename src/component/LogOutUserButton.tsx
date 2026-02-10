@@ -1,7 +1,9 @@
 import { auth } from '../config/firebase-config';
 import { signOut } from 'firebase/auth';
 
-const handleLogOut: React.MouseEventHandler<HTMLButtonElement> = async () => {
+const handleLogOutUser: React.MouseEventHandler<
+    HTMLButtonElement
+> = async () => {
     try {
         // TODO: Go back to first page
         await signOut(auth);
@@ -16,7 +18,7 @@ const handleLogOut: React.MouseEventHandler<HTMLButtonElement> = async () => {
 
 const LogOutUserButton = () => {
     return (
-        <button type="button" onClick={handleLogOut}>
+        <button type="button" onClick={handleLogOutUser}>
             Log Out
         </button>
     );
