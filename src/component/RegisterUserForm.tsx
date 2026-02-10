@@ -1,6 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
+import { auth } from '../config/firebase-config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 // TODO: Replace the magic number by CONSTANT like MIN_PASSWORD_LENGTH.
 //const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -32,23 +34,25 @@ const RegisterUserForm = () => {
         resolver: zodResolver(FormFieldsSchema),
     });
 
-    const onSubmitForm: SubmitHandler<FormFields> = async (data) => {
+    const handleRegisterUser: SubmitHandler<FormFields> = async (data) => {
+        // IDEA: Add setTimeout of 1 second to make the user "feel" the backend is "processing" (psychologic trick).
         try {
-            // IDEA: Purposefully make the form take at least one so user "feel" like the backend is correctly working (psychologic trick I heard once).
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-
-            throw new Error();
-
-            console.log(data);
+            // TODO: GO to account page.
+            await createUserWithEmailAndPassword(
+                auth,
+                data.email,
+                data.password
+            );
         } catch (error) {
             setError('root', {
-                message: 'The user creation encountered an problem.',
+                message: 'The user creation process encountered an problem.',
             });
+            console.error(error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmitForm)}>
+        <form onSubmit={handleSubmit(handleRegisterUser)}>
             <section>
                 <label htmlFor="email">Label 1</label>
 
