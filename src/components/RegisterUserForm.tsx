@@ -1,22 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import z from 'zod';
 import { auth } from '../config/firebase-config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { UserSchema, type UserFields } from '../schemas/UserSchema';
 
 // TODO: Make sure user cannot create new account if he hasn't log out first.
-
-// TODO: Replace the magic number by CONSTANT like MIN_PASSWORD_LENGTH.
-//const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-//const MIN_PASSWORD_LENGTH = 12;
-//const MAX_PASSWORD_LENGTH = 100;
-const FormFieldsSchema = z.object({
-    email: z.email(),
-    password: z.string().min(12).max(100),
-});
-
-// IDEA: Might be moved to dedicated types folder
-type FormFields = z.infer<typeof FormFieldsSchema>;
 
 // IDEA: Go take a look at these articles to make a really beautiful yet ergonomic interface (https://www.uidesign.tips/ui-tips/social-login - https://www.uidesign.tips/blog/top-ui-ux-design-tips-for-better-forms).
 // IDEA: Check how to enforce the same form validation on Firebase because client-side is unsecure.
@@ -26,11 +14,11 @@ const RegisterUserForm = () => {
         handleSubmit,
         setError,
         formState: { errors, isSubmitting },
-    } = useForm<FormFields>({
-        resolver: zodResolver(FormFieldsSchema),
+    } = useForm<UserFields>({
+        resolver: zodResolver(UserSchema),
     });
 
-    const handleRegisterUser: SubmitHandler<FormFields> = async (data) => {
+    const handleRegisterUser: SubmitHandler<UserFields> = async (data) => {
         // IDEA: Add setTimeout of 1 second to make the user "feel" the backend is "processing" (psychologic trick).
         try {
             // TODO: GO to login page.
