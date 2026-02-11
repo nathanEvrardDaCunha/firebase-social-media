@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-// import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -17,7 +16,6 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-// TODO: to delete after testing purposes done.
 // IDEA: is this good to centralized all/most of firebase behavior into the config file ?
 // onAuthStateChanged(auth, (user) => {
 //     if (user) {
@@ -26,8 +24,6 @@ export const db = getFirestore(app);
 //         console.log('No user anymore.');
 //     }
 // });
-
-// const analytics = getAnalytics(app);
 
 // firebase login
 // firebase init
@@ -65,26 +61,6 @@ export const db = getFirestore(app);
   (auth is part of firebase so "import {auth} from firebase" or somehting like that)
   - To get user auth.currentUser.uid
 
-  const onSubmitMovie = async () => {
-    try {
-      await addDoc(moviesCollectionRed, {
-      
-        title:...
-        releaseDate:...
-      
-      })
-    } catch (err) {
-     console.error(err)}
-  }
-
-  const deleteMovie = async (id: string) => {
-    try {
-      const movieDoc = doc(db, "movies", id);
-      await deleteDoc(moieDoc)
-    } catch (err) {
-     console.error(err)}
-  }
-
   const updateMovie = async (id: string) => {
     try {
       const movieDoc = doc(db, "movies", id);
@@ -97,26 +73,6 @@ export const db = getFirestore(app);
     } catch (err) {
      console.error(err)}
   }
-
-
-  ----------------------------------------------------------
-
-rules_version = '2';
-
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow write, update, delete: if request.auth != null && request.auth.uid == request.ressource.data.userId;
-      allow read: if true;
-    }
-  }
-}
-
-
-(To note: the "userId" from "request.ressource.data.userId" is from the firebase ressource)
-
-
-
 
 # ======== HOSTING ======== #
 
