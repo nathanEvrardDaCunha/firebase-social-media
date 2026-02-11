@@ -13,6 +13,11 @@ import { UserSchema, type UserFields } from '../schemas/UserSchema';
 
 // IDEA: Go take a look at these articles to make a really beautiful yet ergonomic interface (https://www.uidesign.tips/ui-tips/social-login - https://www.uidesign.tips/blog/top-ui-ux-design-tips-for-better-forms).
 // IDEA: Check how to enforce the same form validation on Firebase because client-side is unsecure.
+// IDEA: Add setTimeout of 1 second to make the user "feel" the backend is "processing" (psychologic trick).
+// TODO: GO to account page when signed in.
+// TODO: Need to tell when "Invalid Credentials"
+// TODO: Change placeholders
+
 const LogInUserForm = () => {
     const {
         register,
@@ -24,9 +29,7 @@ const LogInUserForm = () => {
     });
 
     const handleLogInUser: SubmitHandler<UserFields> = async (data) => {
-        // IDEA: Add setTimeout of 1 second to make the user "feel" the backend is "processing" (psychologic trick).
         try {
-            // TODO: GO to account page.
             await signInWithEmailAndPassword(auth, data.email, data.password);
         } catch (error) {
             setError('root', {
@@ -36,7 +39,6 @@ const LogInUserForm = () => {
         }
     };
 
-    // TODO: Change placeholders
     return (
         <form onSubmit={handleSubmit(handleLogInUser)}>
             <section>

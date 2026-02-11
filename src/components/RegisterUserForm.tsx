@@ -5,9 +5,13 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { UserSchema, type UserFields } from '../schemas/UserSchema';
 
 // TODO: Make sure user cannot create new account if he hasn't log out first.
-
 // IDEA: Go take a look at these articles to make a really beautiful yet ergonomic interface (https://www.uidesign.tips/ui-tips/social-login - https://www.uidesign.tips/blog/top-ui-ux-design-tips-for-better-forms).
 // IDEA: Check how to enforce the same form validation on Firebase because client-side is unsecure.
+// IDEA: Add setTimeout of 1 second to make the user "feel" the backend is "processing" (psychologic trick).
+// TODO: GO to login page when accoutn created.
+// TODO: Change placeholders
+// NEED TO TEST IF ERROR DISPLAY "USER ALREADY CREATED"
+
 const RegisterUserForm = () => {
     const {
         register,
@@ -19,9 +23,7 @@ const RegisterUserForm = () => {
     });
 
     const handleRegisterUser: SubmitHandler<UserFields> = async (data) => {
-        // IDEA: Add setTimeout of 1 second to make the user "feel" the backend is "processing" (psychologic trick).
         try {
-            // TODO: GO to login page.
             await createUserWithEmailAndPassword(
                 auth,
                 data.email,
@@ -35,7 +37,6 @@ const RegisterUserForm = () => {
         }
     };
 
-    // TODO: Change placeholders
     return (
         <form onSubmit={handleSubmit(handleRegisterUser)}>
             <section>
