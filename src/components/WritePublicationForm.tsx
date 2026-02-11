@@ -6,6 +6,7 @@
 // IDEA: Add setTimeout of 1 second to make the user "feel" the backend is "processing" (psychologic trick).
 // IDEA: Should I receive the userId as a prop to only possess one source of truth ? => In theory the form appear only when connected so currentUser should already be tested.
 // TODO: Change placeholders
+// TODO: Relaod the display to display the up-to-date publications.
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
