@@ -22,11 +22,3 @@ function App() {
 }
 
 export default App;
-
-// <>
-//     <RegisterPage />
-
-//     <LogOutUserButton />
-
-//     <LoginPage />
-// </>
